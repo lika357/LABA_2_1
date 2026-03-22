@@ -21,7 +21,6 @@ int** creat_matrix_int(int size){
     return matrix;
 }
 void fill_matrix_random(int** matrix,int size){
-    srand(time(NULL));
     for(size_t i=0;i<size;i++){
         for(size_t j=0;j<size;j++){
             matrix[i][j]=rand()%(2*(max_number+1))-max_number;
@@ -50,4 +49,43 @@ void print_matrix(int** matrix,int size){
         printf("\n");
     }
 }
-
+int** summ_matrix(int** a,int** b,int size){
+    int** result =  creat_matrix_int(size);
+    for(size_t i=0;i<size;i++){
+        for(size_t j=0;j<size;j++){
+            result[i][j]=a[i][j]+b[i][j];
+        }
+    }
+    return result;
+}
+int** mult_matrix(int** a,int** b,int size){
+    int** result =  creat_matrix_int(size);
+    for(size_t i=0;i<size;i++){
+        for(size_t j=0;j<size;j++){
+            int summ=0;
+            for(size_t k=0;k<size;k++){
+                summ+=a[i][k]*b[k][j];
+            }
+            result[i][j]=summ;
+        }
+    }
+    return result;
+}
+int** mult_matrix_scalar(int** matrix,int size,int scalar){
+     int** result =  creat_matrix_int(size);
+      for(size_t i=0;i<size;i++){
+        for(size_t j=0;j<size;j++){
+            result[i][j]=scalar*matrix[i][j];
+        }
+      }
+      return result;
+}
+void free_matrix(int** matrix,int size){
+    if(matrix==NULL){
+        return;
+    }
+    for(size_t i;i<size;i++){
+        free(matrix[i]);
+    }
+    free(matrix);
+}

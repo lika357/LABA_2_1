@@ -21,3 +21,15 @@ void* complex_mult_scalar_n(void* a,float scalar){
 void complex_free_n(void* number){
     free(number);
 }
+type* type_compl(){
+    if(type_compl==NULL){
+        type* type_compl = (type*)malloc(sizeof(type));
+    }
+    type_compl -> print = print_complex_n;
+    type_compl -> summ = complex_summ_n;
+    type_compl -> mult = complex_mult_n;
+    type_compl -> mult_scalar = complex_mult_scalar_n;
+    type_compl -> free = complex_free_n;
+    return type_compl;
+}
+

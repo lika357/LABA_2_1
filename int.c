@@ -45,3 +45,14 @@ void* summ_mult_scalar(void* a,float scalar){
 void free_int(void* num){
     free(num);
 }
+type* type_int(){
+    if(type_int==NULL){
+        type* type_int = (type*)malloc(sizeof(type));
+    }
+    type_int -> print = print_int;
+    type_int -> summ = summ_int;
+    type_int -> mult = mult_int;
+    type_int -> mult_scalar = mult_scalar_int;
+    type_int -> free = free_int;
+    return type_int;
+}

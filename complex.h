@@ -12,3 +12,4 @@ complex* complex_mult(complex* a,complex* b);
 complex* complex_mult_scalar(complex* a,float scalar);
 void complex_free(complex* a);
 
+

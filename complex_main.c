@@ -21,7 +21,7 @@ void* complex_mult_scalar_n(void* a,float scalar){
 void complex_free_n(void* number){
     free(number);
 }
-type* type_compl(){
+type_info* type_compl(){
     if(type_compl==NULL){
         type* type_compl = (type*)malloc(sizeof(type));
     }

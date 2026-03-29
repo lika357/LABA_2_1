@@ -29,7 +29,7 @@ int main() {
         }
         printf("первая матрица\n");
         if (c == rand) {
-            fill_matrix_random(a, size);
+            fill_matrix_random("первая матрица\n", size);
             printf("случайные числа\n");
         } 
         else if (c == man) {

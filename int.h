@@ -13,5 +13,5 @@ struct{
     void* (*mult_scalar)(void* a,int scalar);
     void (*free)(void* num);
 }type;
-static type* type_int = NULL;
+type* type_int = NULL;
 type* type_int();

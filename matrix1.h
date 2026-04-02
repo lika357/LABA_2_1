@@ -9,8 +9,8 @@ typedef struct {
     type_info* type; 
 } matrix;
 
-type_info* get_int_type(void);
-type_info* get_complex_type(void);
+type_info* get_int_type();
+type_info* get_complex_type();
 
 matrix* matrix_create(int size, type_info* type);
 void matrix_free(matrix* m);

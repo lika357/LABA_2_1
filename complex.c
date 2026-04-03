@@ -17,7 +17,7 @@ complex* complex_summ(complex* a,complex* b){
         return result;
     }
     else{
-        return 1;
+        return NULL;
     }
 }
 complex* complex_mult(complex* a,complex* b){

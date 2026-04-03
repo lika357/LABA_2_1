@@ -101,7 +101,7 @@ static matrix *create_matrix_interactive(const char *title, int max_val){
 
     if (type_c == 'i')
     {
-        type = get_int_type();
+        type = get_type_int();
     }
     else
     {
@@ -250,8 +250,8 @@ void io_run(){
     }
     else if (mode == 'c')
     {
-        A = create_matrix_interactive("матрица", 10);
-        if (A != NULL)
+        a = create_matrix_interactive("матрица", 10);
+        if (a != NULL)
         {
             scalar_c.real = read_float("действительная часть скаляра: ", -100.0f, 100.0f);
             scalar_c.imag = read_float("мнимая часть скаляра: ", -100.0f, 100.0f);

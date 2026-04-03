@@ -1,5 +1,7 @@
 #include "complex_main.h"
 #include "complex.h"
+#include "type_info.h"
+type_info* type_compl = NULL;
 char* print_complex(const void* data){
     if (data==NULL) {
         return NULL;
@@ -56,15 +58,15 @@ void* complex_mult_scalar_complex_n(void* a,void* b){
 void complex_free_n(void* number){
     free(number);
 }
-type_info* type_compl(){
+type_info* get_type_complex(){
     if(type_compl==NULL){
-        type* type_compl = (type*)malloc(sizeof(type));
+        type_info* type_compl = (type_info*)malloc(sizeof(type_info));
     }
-    type_int -> size = sizeof(complex);
-    type_compl -> print = print_complex_n;
+    type_compl -> size = sizeof(complex);
+    type_compl -> print = print_complex;
     type_compl -> summ = complex_summ_n;
     type_compl -> mult = complex_mult_n;
-    type_int -> mult_scalar_complex = complex_mult_scalar_complex_n;
+    type_compl -> mult_scalar_complex = complex_mult_scalar_complex_n;
     type_compl -> mult_scalar = complex_mult_scalar_n;
     type_compl -> free = complex_free_n;
     return type_compl;

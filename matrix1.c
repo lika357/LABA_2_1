@@ -125,7 +125,7 @@ matrix* matrix_mul(matrix* a, matrix* b) {
                 void* elem_a = element_pointer(a->data, i, k, size, a->type->size);
                 void* elem_b = element_pointer(b->data, k, j, size, b->type->size);
                 
-                void* mul = a->type->multiply(elem_a, elem_b); 
+                void* mul = a->type->mult(elem_a, elem_b); 
                 if (!mul) {
                     if (sum!=NULL) {
                         a->type->free(sum);
@@ -172,7 +172,7 @@ matrix* matrix_mul_scalar(matrix* m, float scalar_val) {
         void* elem = (char*)m->data + i * m->type->size;
         void* res = (char*)result->data + i * result->type->size;
         
-        void* scaled = m->type->multiply_scalar(elem, scalar_val);  
+        void* scaled = m->type->mult_scalar(elem, scalar_val);  
         if (!scaled) {
             matrix_free(result);
             return NULL;
@@ -217,14 +217,16 @@ int matrix_fill_random(matrix* m, int max_val) {
     for (int i = 0; i < all; i++) {
         void* elem = (char*)m->data + i * m->type->size;  
         
-        if (m->type == get_int_type()) {
+        if (m->type == get_type_int()) {
             int val = rand() % (2 * max_val + 1) - max_val;
             memcpy(elem, &val, sizeof(int));
         }
         else if (m->type == get_complex_type()) {
-            complex->real = (float)(rand() % (2 * max_val + 1) - max_val);
-            complex->imag = (float)(rand() % (2 * max_val + 1) - max_val);
-            memcpy(elem, &complex, sizeof(complex));
+            complex* comp = (complex*)malloc(sizeof(complex));
+            comp->real = (float)(rand() % (2 * max_val + 1) - max_val);
+            comp->imag = (float)(rand() % (2 * max_val + 1) - max_val);
+            memcpy(elem, &comp, sizeof(complex));
+            free(comp);
         }
     }
     
@@ -242,7 +244,7 @@ int matrix_fill_manual(matrix* m, int max_val) {
         for (size_t j = 0; j < m->size; j++) {
             void* elem = element_pointer(m->data, i, j, m->size, m->type->size);
             
-            if (m->type == get_int_type()) {
+            if (m->type == get_type_int()) {
                 int val;
                 printf("[%d][%d] ", i + 1, j + 1);
                 if (scanf("%d", &val) != 1 || val > max_val || val < -max_val) {
@@ -251,15 +253,16 @@ int matrix_fill_manual(matrix* m, int max_val) {
                 memcpy(elem, &val, sizeof(int));
             }
             else if (m->type == get_complex_type()) {
+                complex* comp = (complex*)malloc(sizeof(complex));
                 printf("[%d][%d] действительная часть:", i + 1, j + 1);
-                if (scanf("%f", &complex->real) != 1 || complex->real > max_val || complex->real < -max_val) {
+                if (scanf("%f", &comp->real) != 1 || comp->real > max_val || comp->real < -max_val) {
                     return 1;
                 }
                 printf("[%d][%d] мнимая часть:", i + 1, j + 1);
-                if (scanf("%f", &complex->imag) != 1 || complex->imag > max_val || complex->imag < -max_val) {
+                if (scanf("%f", &comp->imag) != 1 || comp->imag > max_val || comp->imag < -max_val) {
                     return 1;
                 }
-                memcpy(elem, &complex, sizeof(complex));
+                memcpy(elem, &comp, sizeof(complex));
             }
         }
     }

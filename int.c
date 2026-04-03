@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "complex.h"
+#include "complex_main.h"
 #include "int.h"
+type_info* type_int = NULL;
 char* print_int(const void* number){
     if (number==NULL){
         return NULL;
@@ -72,9 +75,9 @@ void* mult_scalar_complex_int(void* a,void* b){
 void free_int(void* num){
     free(num);
 }
-type_info* type_int(){
+type_info* get_type_int(){
     if(type_int==NULL){
-        type* type_int = (type*)malloc(sizeof(type));
+        type_info* type_int = (type_info*)malloc(sizeof(type_info));
     }
     type_int -> size = sizeof(int);
     type_int -> mult_scalar_complex = mult_scalar_complex_int;

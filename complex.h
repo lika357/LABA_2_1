@@ -1,7 +1,7 @@
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
-typedef struct {
+typedef struct complex2 {
     float real;
     float imag;
 }complex;

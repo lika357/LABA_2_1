@@ -31,7 +31,7 @@ void* summ_int(void* a,void* b){
     }
 
 }
-void* summ_mult(void* a,void* b){
+void* mult_int(void* a,void* b){
     int* num1 = (int*)a;
     int* num2 = (int*)b;
     int* result = (int*)calloc(1,sizeof(int));
@@ -43,7 +43,7 @@ void* summ_mult(void* a,void* b){
         return NULL;
     }
 }
-void* summ_mult_scalar(void* a,float scalar){
+void* mult_scalar_int(void* a,float scalar){
     int* num = (int*)a;
     int* result = (int*)calloc(1,sizeof(int));
     if(result!=NULL){
@@ -55,6 +55,20 @@ void* summ_mult_scalar(void* a,float scalar){
     }
 
 }
+void* mult_scalar_complex_int(void* a,void* b){
+    if(a==NULL || b==NULL){
+        return NULL;
+    }
+    complex* res=calloc(1,sizeof(complex));
+    if(res==NULL){
+        return NULL;
+    }
+    int val = *(const int*)a;
+    complex* num=(complex*)b;
+    res->real=val*num->real;
+    res->imag=val*num->imag;
+    return res;
+}
 void free_int(void* num){
     free(num);
 }
@@ -63,6 +77,7 @@ type_info* type_int(){
         type* type_int = (type*)malloc(sizeof(type));
     }
     type_int -> size = sizeof(int);
+    type_int -> mult_scalar_complex = mult_scalar_complex_int;
     type_int -> print = print_int;
     type_int -> summ = summ_int;
     type_int -> mult = mult_int;

@@ -39,6 +39,20 @@ void* complex_mult_scalar_n(void* a,float scalar){
     complex* num=(complex*)a;
     return complex_mult_scalar(num,scalar);
 }
+void* complex_mult_scalar_complex_n(void* a,void* b){
+    if(a==NULL || b==NULL){
+        return NULL;
+    }
+    complex* res=calloc(1,sizeof(complex));
+    if(res==NULL){
+        return NULL;
+    }
+    complex* num1=(complex*)a;
+    complex* num2=(complex*)b;
+    res->real=num1->real*num2->real - num1->imag*num2->imag;
+    res->imag=num1->real*num2->real + num1->imag*num2->imag;
+    return res;
+}
 void complex_free_n(void* number){
     free(number);
 }
@@ -50,6 +64,7 @@ type_info* type_compl(){
     type_compl -> print = print_complex_n;
     type_compl -> summ = complex_summ_n;
     type_compl -> mult = complex_mult_n;
+    type_int -> mult_scalar_complex = complex_mult_scalar_complex_n;
     type_compl -> mult_scalar = complex_mult_scalar_n;
     type_compl -> free = complex_free_n;
     return type_compl;

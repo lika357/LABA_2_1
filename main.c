@@ -1,7 +1,6 @@
-#include "matrix1.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include "io.h"
 
-int main() {
+int main(){
+    io_run();
+    return 0;
 }

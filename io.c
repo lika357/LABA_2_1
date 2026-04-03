@@ -88,7 +88,7 @@ static float read_float(const char *prompt, float min, float max){
     }
 }
 
-static matrix *create_matrix_interactive(const char *title, int max_val){
+static matrix* create_matrix_interactive(const char *title, int max_val){
     matrix *m;
     type_info *type;
     char type_c;
@@ -174,7 +174,7 @@ static void print_operation(const char *op, matrix *a, matrix *b, matrix *result
         free(sa);
     }
 
-    printf("\n  %s\n", op);
+    printf("\n %s\n", op);
 
     if (sb != NULL)
     {
@@ -218,10 +218,10 @@ void io_run(){
 
     if (mode == 's' || mode == 'm')
     {
-        a = create_matrix_interactive("матрица a", 10);
+        a = create_matrix_interactive("матрица a ", 10);
         if (a != NULL)
         {
-            b = create_matrix_interactive("матрица b", 10);
+            b = create_matrix_interactive("матрица b ", 10);
         }
 
         if (a != NULL && b != NULL)

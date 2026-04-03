@@ -246,7 +246,7 @@ int matrix_fill_manual(matrix* m, int max_val) {
             
             if (m->type == get_type_int()) {
                 int val;
-                printf("[%d][%d] ", i + 1, j + 1);
+                printf("[%d][%d] ",(int)i + 1,(int)j + 1);
                 if (scanf("%d", &val) != 1 || val > max_val || val < -max_val) {
                     return 1;
                 }
@@ -254,11 +254,11 @@ int matrix_fill_manual(matrix* m, int max_val) {
             }
             else if (m->type == get_complex_type()) {
                 complex* comp = (complex*)malloc(sizeof(complex));
-                printf("[%d][%d] действительная часть:", i + 1, j + 1);
+                printf("[%d][%d] действительная часть:",(int)i + 1,(int)j + 1);
                 if (scanf("%f", &comp->real) != 1 || comp->real > max_val || comp->real < -max_val) {
                     return 1;
                 }
-                printf("[%d][%d] мнимая часть:", i + 1, j + 1);
+                printf("[%d][%d] мнимая часть:",(int)i + 1,(int)j + 1);
                 if (scanf("%f", &comp->imag) != 1 || comp->imag > max_val || comp->imag < -max_val) {
                     return 1;
                 }

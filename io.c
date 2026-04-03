@@ -226,16 +226,29 @@ void io_run(){
 
         if (a != NULL && b != NULL)
         {
+            if (a->type != b->type) {
+             printf("ошибка ,матрицы разных типов (int и complex нельзя складывать или умножать)\n");
+            }
             if (mode == 's')
             {
                 result = matrix_summ(a, b);
+                if (result == NULL) {
+                    printf("ошибка,не удалось сложить матрицы\n");
             }
+            else {
+            print_operation("+", a, b, result);
+            }
+        }
             else
             {
                 result = matrix_mul(a, b);
+                if (result == NULL) {
+                    printf("ошибка,не удалось сложить матрицы\n");
             }
-
-            print_operation(mode == 's' ? "+" : "*", a, b , result);
+            else {
+            print_operation("*", a, b, result);
+            }
+            }
         }
     }
     else if (mode == 'f')

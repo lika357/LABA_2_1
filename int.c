@@ -77,8 +77,9 @@ void free_int(void* num){
 }
 type_info* get_type_int(){
     if(type_int==NULL){
-        type_info* type_int = (type_info*)malloc(sizeof(type_info));
+        type_int = (type_info*)malloc(sizeof(type_info));
     }
+    if(type_int!=NULL){
     type_int -> size = sizeof(int);
     type_int -> mult_scalar_complex = mult_scalar_complex_int;
     type_int -> print = print_int;
@@ -86,5 +87,6 @@ type_info* get_type_int(){
     type_int -> mult = mult_int;
     type_int -> mult_scalar = mult_scalar_int;
     type_int -> free = free_int;
+    }
     return type_int;
 }

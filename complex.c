@@ -11,16 +11,6 @@ complex* complex_creat(float real,float imag){
     }
     return c;
 }
-void complex_print(complex* c){
-    if(c!=NULL){
-        if(c->imag < 0){
-            printf("%.2f - %.2fi\n",c->real,-(c->imag));
-        }
-        else{
-             printf("%.2f + %.2fi\n",c->real,c->imag);
-        }
-    }
-}
 complex* complex_summ(complex* a,complex* b){
     if(a!=NULL && b!=NULL){
         complex* result = complex_creat(a-> real + b-> real,a->imag + b->imag);

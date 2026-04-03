@@ -1,8 +1,29 @@
 #include "complex_main.h"
 #include "complex.h"
-void print_complex_n(void* number){
-    complex* a=(complex*)number;
-    complex_print(a);
+char* print_complex(const void* data){
+    if (data==NULL) {
+        return NULL;
+    }
+    const complex* number = (const complex*)data;
+    char* str = calloc(64, sizeof(char));
+    if (str==NULL) {
+        return NULL;
+    }
+    int len = 0;
+    
+    if (number->real < 0) {
+        len += snprintf(str + len, 64 - len, "%.2f", number->real);
+    } else {
+        len += snprintf(str + len, 64 - len, " %.2f", number->real);
+    }
+    
+    if (number->imag < 0) {
+        len += snprintf(str + len, 64 - len, "%.2fi", number->imag);
+    } else {
+        len += snprintf(str + len, 64 - len, "+%.2fi", number->imag);
+    }
+    
+    return str;
 }
 void* complex_summ_n(void* a,void* b){
     complex* num1=(complex*)a;
@@ -25,6 +46,7 @@ type_info* type_compl(){
     if(type_compl==NULL){
         type* type_compl = (type*)malloc(sizeof(type));
     }
+    type_int -> size = sizeof(complex);
     type_compl -> print = print_complex_n;
     type_compl -> summ = complex_summ_n;
     type_compl -> mult = complex_mult_n;

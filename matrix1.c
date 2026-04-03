@@ -42,21 +42,37 @@ void matrix_free(matrix* m) {
     free(m);
 }
 
-void matrix_print(matrix* m) {
-    if (!m) {
-        return;
+char* matrix_to_string(const matrix* m) {
+    if (!m || !m->type || !m->type->print){ 
+        return NULL;
     }
+    int buf_size = 256 + m->size * m->size * 32;
+    char* result = calloc(buf_size, sizeof(char));
+    if (!result) {
+        return NULL;
+    }
+    result[0] = '\0';
     
-    printf("матрица %dx%d:\n", m->size, m->size);
+    char temp[64];
+    snprintf(temp, sizeof(temp), "матрица %dx%d:\n", m->size, m->size);
+    strcat(result, temp);
     
     for (int i = 0; i < m->size; i++) {
+        strcat(result, "| ");
         for (int j = 0; j < m->size; j++) {
             void* elem = element_pointer(m->data, i, j, m->size, m->type->size);
-            m->type->print(elem);  
-            printf(" ");
+            
+            char* str = m->type->print(elem);
+            if (str!=NULL) {
+                strcat(result, str);
+                strcat(result, " ");
+                free(str);
+            }
         }
-        printf("\n");
+        strcat(result, "|\n");
     }
+    
+    return result;
 }
 
 matrix* matrix_summ(matrix* a, matrix* b) {

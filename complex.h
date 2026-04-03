@@ -6,7 +6,6 @@ typedef struct {
     float imag;
 }complex;
 complex* complex_creat(float real,float imag);
-void complex_print(complex* c);
 complex* complex_summ(complex* a,complex* b);
 complex* complex_mult(complex* a,complex* b);
 complex* complex_mult_scalar(complex* a,float scalar);

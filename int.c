@@ -1,9 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "int.h"
-void print_int(void* number){
-    int* c = (int*)number;
-    printf("%d",*number);
+char* print_int(const void* number){
+    if (number==NULL){
+        return NULL;
+    }
+    int val = *(const int*)number;
+    char* str = calloc(32, sizeof(char)); 
+    if (str==NULL){
+         return NULL;
+    }
+    
+    if (val < 0) {
+        snprintf(str, 32, "%d", val);
+    } else {
+        snprintf(str, 32, " %d", val);  
+    }
+    return str;
 }
 void* summ_int(void* a,void* b){
     int* num1 = (int*)a;
@@ -49,6 +62,7 @@ type_info* type_int(){
     if(type_int==NULL){
         type* type_int = (type*)malloc(sizeof(type));
     }
+    type_int -> size = sizeof(int);
     type_int -> print = print_int;
     type_int -> summ = summ_int;
     type_int -> mult = mult_int;

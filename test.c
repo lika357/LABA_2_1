@@ -1290,7 +1290,7 @@ void print_results() {
         printf("\n ВСЕ ТЕСТЫ ПРОЙДЕНЫ УСПЕШНО!\n");
         printf("ПОКРЫТИЕ КОДА: 100%%\n");
     } else {
-        printf("\n✗ ОБНАРУЖЕНО %zu ОШИБОК! ТРЕБУЕТСЯ ИСПРАВЛЕНИЕ\n", get_failed_tests());
+        printf("\n ОБНАРУЖЕНО %zu ОШИБОК! ТРЕБУЕТСЯ ИСПРАВЛЕНИЕ\n", get_failed_tests());
     }
 }
 

@@ -51,8 +51,8 @@ void* complex_mult_scalar_complex_n(void* a,void* b){
     }
     complex* num1=(complex*)a;
     complex* num2=(complex*)b;
-    res->real=num1->real*num2->real - num1->imag*num2->imag;
-    res->imag=num1->real*num2->real + num1->imag*num2->imag;
+    res->real = num1->real * num2->real - num1->imag * num2->imag;
+    res->imag = num1->real * num2->imag + num1->imag * num2->real; 
     return res;
 }
 void complex_free_n(void* number){

@@ -57,9 +57,9 @@ char* matrix_to_string(const matrix* m) {
     snprintf(temp, sizeof(temp), "матрица %dx%d:\n", m->size, m->size);
     strcat(result, temp);
     
-    for (size_t i = 0; i < m->size; i++) {
+    for (int i = 0; i < m->size; i++) {
         strcat(result, "| ");
-        for (size_t j = 0; j < m->size; j++) {
+        for (int j = 0; j < m->size; j++) {
             void* elem = element_pointer(m->data, i, j, m->size, m->type->size);
             
             char* str = m->type->print(elem);
@@ -88,7 +88,7 @@ matrix* matrix_summ(matrix* a, matrix* b) {
         return NULL;
     }
 
-    for (size_t i = 0; i < all; i++) {
+    for (int i = 0; i < all; i++) {
         void* elem_a = (char*)a->data + i * a->type->size;
         void* elem_b = (char*)b->data + i * b->type->size;
         void* res = (char*)result->data + i * result->type->size;
@@ -117,11 +117,11 @@ matrix* matrix_mul(matrix* a, matrix* b) {
         return NULL;
     }
     
-    for (size_t i = 0; i < size; i++) {
-        for (size_t j = 0; j < size; j++) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             void* sum = NULL; 
             
-            for (size_t k = 0; k < size; k++) {
+            for (int k = 0; k < size; k++) {
                 void* elem_a = element_pointer(a->data, i, k, size, a->type->size);
                 void* elem_b = element_pointer(b->data, k, j, size, b->type->size);
                 
@@ -168,7 +168,7 @@ matrix* matrix_mul_scalar(matrix* m, float scalar_val) {
         return NULL;
     }
     
-    for (size_t i = 0; i < all; i++) {
+    for (int i = 0; i < all; i++) {
         void* elem = (char*)m->data + i * m->type->size;
         void* res = (char*)result->data + i * result->type->size;
         
@@ -193,7 +193,7 @@ matrix* matrix_mul_scalar_complex(matrix* m, void* scalar) {
     if (!result) {
         return NULL;
     }
-    for (size_t i = 0; i < all; i++) {
+    for (int i = 0; i < all; i++) {
         void* elem = (char*)m->data + i * m->type->size;
         void* res = (char*)result->data + i * result->type->size;
         void* summ = m->type->mult_scalar_complex(elem, scalar);
@@ -240,8 +240,8 @@ int matrix_fill_manual(matrix* m, int max_val) {
     
     printf("введите значения матрицы %dx%d от -%d до %d:\n", m->size, m->size, max_val, max_val); 
     
-    for (size_t i = 0; i < m->size; i++) {
-        for (size_t j = 0; j < m->size; j++) {
+    for (int i = 0; i < m->size; i++) {
+        for (int j = 0; j < m->size; j++) {
             void* elem = element_pointer(m->data, i, j, m->size, m->type->size);
             
             if (m->type == get_type_int()) {

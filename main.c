@@ -1,6 +1,10 @@
 #include "io.h"
-
+#include "test.h"
+//int main(){
+    //io_run();
+    //return 0;
+//}
 int main(){
-    io_run();
+    test();
     return 0;
 }

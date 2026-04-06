@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <float.h>
 
 matrix* create_test_int_matrix(int size, int* values) {
     matrix* m = matrix_create(size, get_type_int());

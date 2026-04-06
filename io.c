@@ -221,7 +221,7 @@ void io_run(){
         a = create_matrix_interactive("матрица a ", 10);
         if (a != NULL)
         {
-            b = create_matrix_interactive("матрица b ", 10);
+            b = create_matrix_interactive("матрица b", 10);
         }
 
         if (a != NULL && b != NULL)
@@ -266,16 +266,21 @@ void io_run(){
         a = create_matrix_interactive("матрица", 10);
         if (a != NULL)
         {
+            if (a->type == get_type_int()) {
+            printf("ошибка: умножение на комплексный скаляр возможно только для комплексных матриц\n");
+            }
+            else{
             scalar_c.real = read_float("действительная часть скаляра: ", -100.0f, 100.0f);
             scalar_c.imag = read_float("мнимая часть скаляра: ", -100.0f, 100.0f);
             result = matrix_mul_scalar_complex(a, &scalar_c);
             print_operation("complex", a, NULL, result);
-        }
+            }
     }
 
     matrix_free(a);
     matrix_free(b);
     matrix_free(result);
     printf("\nпрограмма завершена\n");
+}
 }
 

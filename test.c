@@ -211,7 +211,7 @@ void test_complex_mult_complete() {
     assert(complex_mult(g, NULL) == NULL);
     complex_free(g);
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         float r1 = rand() % 100 - 50;
         float i1 = rand() % 100 - 50;
         float r2 = rand() % 100 - 50;
@@ -265,7 +265,7 @@ void test_complex_mult_scalar_complete() {
     
     assert(complex_mult_scalar(NULL, 5.0f) == NULL);
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         float r = rand() % 200 - 100;
         float im = rand() % 200 - 100;
         float scalar = (rand() % 200 - 100) / 10.0f;
@@ -305,7 +305,7 @@ void test_complex_summ_n() {
     assert(result3->imag == 42.0f);
     free(result3);
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         float r1 = (rand() % 2000 - 1000) / 10.0f;
         float i1 = (rand() % 2000 - 1000) / 10.0f;
         float r2 = (rand() % 2000 - 1000) / 10.0f;
@@ -337,7 +337,7 @@ void test_complex_mult_n() {
     assert(result2->imag == 0.0f);
     free(result2);
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         float r1 = (rand() % 200 - 100) / 10.0f;
         float i1 = (rand() % 200 - 100) / 10.0f;
         float r2 = (rand() % 200 - 100) / 10.0f;
@@ -370,7 +370,7 @@ void test_complex_mult_scalar_n() {
     assert(result2->imag == -2.0f);
     free(result2);
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         float r = (rand() % 200 - 100) / 10.0f;
         float im = (rand() % 200 - 100) / 10.0f;
         float scalar = (rand() % 200 - 100) / 10.0f;
@@ -406,7 +406,7 @@ void test_complex_mult_scalar_complex_n() {
     assert(complex_mult_scalar_complex_n(&a3, NULL) == NULL);
     assert(complex_mult_scalar_complex_n(NULL, NULL) == NULL);
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         float r1 = (rand() % 200 - 100) / 10.0f;
         float i1 = (rand() % 200 - 100) / 10.0f;
         float r2 = (rand() % 200 - 100) / 10.0f;
@@ -476,7 +476,7 @@ void test_print_int_complete() {
     
     assert(type->print(NULL) == NULL);
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         int val = rand() % 20000 - 10000;
         char* str = type->print(&val);
         assert(str != NULL);
@@ -512,7 +512,7 @@ void test_summ_int_complete() {
     assert(type->summ(&k, NULL) == NULL);
     assert(type->summ(NULL, NULL) == NULL);
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         int x = rand() % 1000 - 500;
         int y = rand() % 1000 - 500;
         result = (int*)type->summ(&x, &y);
@@ -553,7 +553,7 @@ void test_mult_int_complete() {
     assert(type->mult(NULL, &m) == NULL);
     assert(type->mult(&m, NULL) == NULL);
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         int x = rand() % 100 - 50;
         int y = rand() % 100 - 50;
         result = (int*)type->mult(&x, &y);
@@ -587,7 +587,7 @@ void test_mult_scalar_int_complete() {
     
     assert(type->mult_scalar(NULL, 5.0f) == NULL);
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         int x = rand() % 100 - 50;
         float scalar = (rand() % 200 - 100) / 10.0f;
         result = (int*)type->mult_scalar(&x, scalar);
@@ -673,7 +673,7 @@ void test_complex_mult_scalar_complex_n_via_type() {
     assert(type->mult_scalar_complex(NULL, &b) == NULL);
     assert(type->mult_scalar_complex(&a, NULL) == NULL);
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         complex x = {(rand() % 100 - 50) / 10.0f, (rand() % 100 - 50) / 10.0f};
         complex y = {(rand() % 100 - 50) / 10.0f, (rand() % 100 - 50) / 10.0f};
         

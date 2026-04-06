@@ -222,11 +222,10 @@ int matrix_fill_random(matrix* m, int max_val) {
             memcpy(elem, &val, sizeof(int));
         }
         else if (m->type == get_complex_type()) {
-            complex* comp = (complex*)malloc(sizeof(complex));
-            comp->real = (float)(rand() % (2 * max_val + 1) - max_val);
-            comp->imag = (float)(rand() % (2 * max_val + 1) - max_val);
+            complex comp ;
+            comp.real = (float)(rand() % (2 * max_val + 1) - max_val);
+            comp.imag = (float)(rand() % (2 * max_val + 1) - max_val);
             memcpy(elem, &comp, sizeof(complex));
-            free(comp);
         }
     }
     
@@ -253,13 +252,13 @@ int matrix_fill_manual(matrix* m, int max_val) {
                 memcpy(elem, &val, sizeof(int));
             }
             else if (m->type == get_complex_type()) {
-                complex* comp = (complex*)malloc(sizeof(complex));
+                complex comp ;
                 printf("[%d][%d] действительная часть:",(int)i + 1,(int)j + 1);
-                if (scanf("%f", &comp->real) != 1 || comp->real > max_val || comp->real < -max_val) {
+                if (scanf("%f", &comp.real) != 1 || comp.real > max_val || comp.real < -max_val) {
                     return 1;
                 }
                 printf("[%d][%d] мнимая часть:",(int)i + 1,(int)j + 1);
-                if (scanf("%f", &comp->imag) != 1 || comp->imag > max_val || comp->imag < -max_val) {
+                if (scanf("%f", &comp.imag) != 1 || comp.imag > max_val || comp.imag < -max_val) {
                     return 1;
                 }
                 memcpy(elem, &comp, sizeof(complex));

@@ -30,7 +30,12 @@ char* print_complex(const void* data){
 void* complex_summ_n(void* a,void* b){
     complex* num1=(complex*)a;
     complex* num2=(complex*)b;
+    if(complex_summ(num1,num2)!=NULL){
     return complex_summ(num1,num2);
+    }
+    else{
+        return NULL;
+    }
 }
 void* complex_mult_n(void* a,void* b){
     complex* num1=(complex*)a;

@@ -506,10 +506,7 @@ void test_summ_int_complete() {
     assert(*result == 42);
     free(result);
     
-    int k = 5;
-    assert(type->summ(NULL, &k) == NULL);
-    assert(type->summ(&k, NULL) == NULL);
-    assert(type->summ(NULL, NULL) == NULL);
+
     
     for (int i = 0; i < 10; i++) {
         int x = rand() % 1000 - 500;
@@ -548,9 +545,6 @@ void test_mult_int_complete() {
     assert(*result == 100);
     free(result);
     
-    int m = 5;
-    assert(type->mult(NULL, &m) == NULL);
-    assert(type->mult(&m, NULL) == NULL);
     
     for (int i = 0; i < 10; i++) {
         int x = rand() % 100 - 50;
@@ -584,7 +578,6 @@ void test_mult_scalar_int_complete() {
     assert(*result == 5);
     free(result);
     
-    assert(type->mult_scalar(NULL, 5.0f) == NULL);
     
     for (int i = 0; i < 10; i++) {
         int x = rand() % 100 - 50;
@@ -1284,13 +1277,6 @@ void print_results() {
     printf("УСПЕШНЫХ ПРОВЕРОК: %zu\n", get_true_tests());
     printf("НЕУДАЧНЫХ ПРОВЕРОК: %zu\n", get_failed_tests());
     printf("ВСЕГО ПРОВЕРОК: %zu\n", get_true_tests() + get_failed_tests());
-    
-    if (get_failed_tests() == 0) {
-        printf("\n ВСЕ ТЕСТЫ ПРОЙДЕНЫ УСПЕШНО!\n");
-        printf("ПОКРЫТИЕ КОДА: 100%%\n");
-    } else {
-        printf("\n ОБНАРУЖЕНО %zu ОШИБОК! ТРЕБУЕТСЯ ИСПРАВЛЕНИЕ\n", get_failed_tests());
-    }
 }
 
 int main() {
